@@ -1,0 +1,50 @@
+<form [formGroup]="tzzuForm" (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>TZZU Inhalt</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Thema" formControlName="T"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Ziel" formControlName="Zi"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input type="number" matInput placeholder="Zeit in Minuten" formControlName="Ze">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-chip-list #chipList>
+              <mat-chip *ngFor="let u of U" [selectable]="false"
+                        [removable]="true" (removed)="remove(u)">
+                {{u}}
+                <mat-icon matChipRemove>cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="Unterlagen"
+                      [matChipInputFor]="chipList"
+                      [matChipInputAddOnBlur]="true"
+                      (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!tzzuForm.valid">PDF erzeugen</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
