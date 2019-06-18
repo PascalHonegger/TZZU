@@ -10,12 +10,12 @@ import * as jsPDF from 'jspdf';
 })
 export class TzzuCreatorComponent {
   public tzzuForm = this.fb.group({
-    T: ['Stgw 90 Parkdienst', Validators.required],
-    Zi: ['Jeder Ada ist in der lage...\nGemäss Regelement und ohne Zeitrduck einen Chääse aus seinem Strumpfgewehr zu chääsen', Validators.required],
-    Ze: [60, Validators.required]
+    T: ['', Validators.required],
+    Zi: ['', Validators.required],
+    Ze: ['', Validators.required]
   });
 
-  public U: string[] = ['Keine','Etwas','Regl Stgw 90'];
+  public U: string[] = [];
 
   add(event: MatChipInputEvent): void {
     const input = event.input;
@@ -53,7 +53,7 @@ export class TzzuCreatorComponent {
       doc.setFontSize(150);
       doc.setFontStyle('bold');
       const { h: h1 } = doc.getTextDimensions(title);
-      doc.text(title, 1, height / 2);
+      doc.text(title, 1, height / 2 + h1 / 6);
       doc.setFontSize(42);
       doc.setFontStyle('normal');
       const { h: h2 } = doc.getTextDimensions(str);

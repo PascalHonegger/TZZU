@@ -7,37 +7,42 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <textarea matInput placeholder="Thema" formControlName="T"></textarea>
+            <mat-label>Thema</mat-label>
+            <textarea matInput cdkTextareaAutosize formControlName="T"></textarea>
           </mat-form-field>
         </div>
       </div>
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <textarea matInput placeholder="Ziel" formControlName="Zi"></textarea>
+            <mat-label>Ziel</mat-label>
+            <textarea matInput cdkTextareaAutosize formControlName="Zi"></textarea>
           </mat-form-field>
         </div>
       </div>
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input type="number" matInput placeholder="Zeit in Minuten" formControlName="Ze">
+            <mat-label>Zeit</mat-label>
+            <input type="number" placeholder="60" matInput formControlName="Ze">
           </mat-form-field>
         </div>
       </div>
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
+            <mat-label>Unterlagen</mat-label>
             <mat-chip-list #chipList>
               <mat-chip *ngFor="let u of U" [selectable]="false"
                         [removable]="true" (removed)="remove(u)">
                 {{u}}
                 <mat-icon matChipRemove>cancel</mat-icon>
               </mat-chip>
-              <input placeholder="Unterlagen"
+              <input
                       [matChipInputFor]="chipList"
                       [matChipInputAddOnBlur]="true"
-                      (matChipInputTokenEnd)="add($event)">
+                      (matChipInputTokenEnd)="add($event)"
+                      placeholder="Keine">
             </mat-chip-list>
           </mat-form-field>
         </div>
