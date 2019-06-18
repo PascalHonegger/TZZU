@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UpdateService } from './services/update.service';
 
 @Component({
   selector: 'tzzu-root',
@@ -8,4 +9,7 @@ import { Component } from '@angular/core';
   styles: []
 })
 export class AppComponent {
+  constructor(update: UpdateService) {
+    update.check();
+  }
 }
