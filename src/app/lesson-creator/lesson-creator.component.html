@@ -1,3 +1,118 @@
-<p>
-  lesson-creator works!
-</p>
+<form [formGroup]="tzzuForm" (ngSubmit)="onSubmit()">
+    <mat-card class="main-card">
+      <mat-card-header>
+        <mat-card-title>Lektionsplan erstellen</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>Thema</mat-label>
+              <textarea matInput cdkTextareaAutosize formControlName="T"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>Ausbildungsort</mat-label>
+              <input matInput formControlName="O">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>Datum</mat-label>
+              <input type="date" matInput formControlName="D">
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>Zeit</mat-label>
+              <input type="time" matInput formControlName="U">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>Dauer</mat-label>
+              <input type="number" min="0" placeholder="60" matInput formControlName="Ze">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>Zielsetzung</mat-label>
+              <textarea matInput cdkTextareaAutosize formControlName="Zi"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>Teilnehmer</mat-label>
+              <textarea matInput cdkTextareaAutosize formControlName="Te"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>Ausrüstung, Material</mat-label>
+              <mat-chip-list #chipList>
+                <mat-chip *ngFor="let u of U" [selectable]="false"
+                          [removable]="true" (removed)="remove(u)">
+                  {{u}}
+                  <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+                <input
+                        [matChipInputFor]="chipList"
+                        [matChipInputAddOnBlur]="true"
+                        (matChipInputTokenEnd)="add($event)">
+              </mat-chip-list>
+            </mat-form-field>
+          </div>
+        </div>
+        <h2>
+          Arbeitsschritte
+          <button mat-icon-button (click)="addNewStep(0)" type="button" color="accent"><mat-icon>add</mat-icon></button>
+        </h2>
+        <div>
+          Noch <span class="{{remainingTimeStyle}}">{{ remainingTime }} Minuten</span> zu verplanen.
+        </div>
+        <div cdkDropList (cdkDropListDropped)="drop($event)" formArrayName="A" class="drag-drop-list">
+          <div cdkDrag [cdkDragStartDelay]="200" *ngFor="let a of A.controls; let i=index" [formGroupName]="i" class="drag-drop-box">
+            <div class="col-small">
+              <mat-form-field class="full-width">
+                <mat-label>Zeit</mat-label>
+                <input type="number" min="0" placeholder="15" matInput formControlName="Z">
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field class="full-width">
+                <mat-label>Ablauf</mat-label>
+                <textarea matInput cdkTextareaAutosize formControlName="S"></textarea>
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field class="full-width">
+                <mat-label>Methodische Hinweise</mat-label>
+                <textarea matInput cdkTextareaAutosize formControlName="B"></textarea>
+              </mat-form-field>
+            </div>
+            <div>
+              <button mat-icon-button (click)="removeStep(i)" type="button" color="warn"><mat-icon>delete</mat-icon></button>
+              <button mat-icon-button (click)="addNewStep()" type="button" color="accent"><mat-icon>add</mat-icon></button>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!tzzuForm.valid || remainingTime !== 0">PDF erzeugen</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  

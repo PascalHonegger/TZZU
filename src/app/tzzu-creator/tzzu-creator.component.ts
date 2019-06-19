@@ -12,7 +12,7 @@ export class TzzuCreatorComponent {
   public tzzuForm = this.fb.group({
     T: ['', Validators.required],
     Zi: ['', Validators.required],
-    Ze: ['', Validators.required]
+    Ze: ['', [Validators.required, Validators.min(0)]]
   });
 
   public U: string[] = [];

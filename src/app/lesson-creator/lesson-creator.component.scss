@@ -1,0 +1,101 @@
+@import "~@angular/material/theming";
+@import '../../variables';
+
+.more-steps-needed {
+  font-weight: bold;
+  color: mat-color($military-app-warn);
+}
+
+.less-steps-needed {
+  font-weight: bolder;
+  color: mat-color($military-app-warn);
+}
+
+.no-steps-needed {
+  font-weight: normal;
+  color: mat-color($military-app-primary);
+}
+
+.full-width {
+  width: 100%;
+}
+
+.main-card {
+  min-width: 120px;
+  margin: 20px auto;
+}
+
+.mat-radio-button {
+  display: block;
+  margin: 5px 0;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.col-small {
+  flex: 0 0 75px;
+  margin-right: 10px;
+  min-width: 0;
+}
+
+.col:last-child {
+  margin-right: 0;
+}
+
+.drag-drop-list {
+  max-width: 100%;
+  border: solid 1px #ccc;
+  min-height: 60px;
+  display: block;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.drag-drop-box {
+  padding: 5px;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+}
+
+.drag-drop-box > ** > .mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.drag-drop-box:last-child {
+  border: none;
+}
+
+.drag-drop-list.cdk-drop-list-dragging .drag-drop-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
