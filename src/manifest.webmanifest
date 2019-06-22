@@ -1,7 +1,7 @@
 {
-  "name": "tzzu",
-  "short_name": "tzzu",
-  "theme_color": "#1976d2",
+  "name": "TZZU",
+  "short_name": "TZZU",
+  "theme_color": "#4caf50",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "/",

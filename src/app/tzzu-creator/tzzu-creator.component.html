@@ -38,11 +38,21 @@
                 {{u}}
                 <mat-icon matChipRemove>cancel</mat-icon>
               </mat-chip>
-              <input
-                      [matChipInputFor]="chipList"
-                      [matChipInputAddOnBlur]="true"
-                      (matChipInputTokenEnd)="add($event)">
+              <input [matChipInputFor]="chipList"
+                     [matChipInputAddOnBlur]="true"
+                     (matChipInputTokenEnd)="add($event)">
             </mat-chip-list>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-checkbox formControlName="includeLabels">TZZU Buchstaben drucken</mat-checkbox>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Schriftgrösse</mat-label>
+            <input type="number" required min="0" matInput formControlName="fontSize">
           </mat-form-field>
         </div>
       </div>
