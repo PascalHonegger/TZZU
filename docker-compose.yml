@@ -1,0 +1,7 @@
+version: "3.7"
+services:
+  tzzu:
+    build: .
+    ports:
+      - "8006:80"
+    restart: unless-stopped
