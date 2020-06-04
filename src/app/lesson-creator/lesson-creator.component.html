@@ -111,7 +111,15 @@
         </div>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button color="primary" type="submit" [disabled]="!tzzuForm.valid || remainingTime !== 0">PDF erzeugen</button>
+        <div class="row">
+          <mat-checkbox #ignoreValidation>Validierungsfehler ignorieren</mat-checkbox>
+        </div>
+        <div class="row">
+          <button mat-raised-button color="primary" type="submit"
+            [disabled]="!ignoreValidation.checked && (!tzzuForm.valid || remainingTime !== 0)">
+            PDF erzeugen
+          </button>
+        </div>
       </mat-card-actions>
     </mat-card>
   </form>
