@@ -118,7 +118,7 @@ export class LessonCreatorComponent {
 
     // Ausbildungsort, Datum, Zeit
     doc.text(doc.splitTextToSize(O, 4), 5.6, 5.5);
-    doc.text(D, 5.6, 6.4);
+    doc.text(D ?? '', 5.6, 6.4);
     doc.text(U, 8.1, 6.4);
 
     // Dauer
