@@ -154,16 +154,24 @@ export class LessonCreatorComponent {
       rows.push({ first: null, second: null, third: null});
     }
 
-    const firstPageRows = 5;
+    const firstPageRows = 9;
+    const additionalPageRows = 40;
     const startHeightFirstPage = 15.75;
-    const startHeightSecondPage = 2.75;
+    const startHeightAdditionalPage = 3.25;
     const { h: lineHeight } = doc.getTextDimensions('A');
 
     for (let i = 0; i < rows.length; i++) {
       const { first, second, third } = rows[i];
-      const isFirstPage = i <= firstPageRows;
-      let pos = isFirstPage ? startHeightFirstPage : startHeightSecondPage;
-      pos += isFirstPage ? i * lineHeight : (i - firstPageRows) * lineHeight;
+      const isFirstPage = i < firstPageRows;
+      const offset = isFirstPage ? i : (i - firstPageRows) % additionalPageRows;
+
+      if (i !== 0 && offset === 0) {
+        doc.addPage();
+        doc.addImage(page2, 'JPEG', 0, 0, width, height);
+      }
+
+      let pos = isFirstPage ? startHeightFirstPage : startHeightAdditionalPage;
+      pos += offset * lineHeight;
       if (first) {
         doc.text(first, 1, pos);
       }
@@ -172,11 +180,6 @@ export class LessonCreatorComponent {
       }
       if (third) {
         doc.text(third, 10, pos);
-      }
-
-      if (i === firstPageRows) {
-        doc.addPage();
-        doc.addImage(page2, 'JPEG', 0, 0, width, height);
       }
     }
 
